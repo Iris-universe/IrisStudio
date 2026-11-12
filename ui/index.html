@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>IrisStudio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="top">
+  <div class="logo">Iris<b>Studio</b></div>
+  <div class="menu" data-zone="file">
+    <button id="btn-new" title="Nouveau projet (Ctrl+N)">Nouveau</button>
+    <button id="btn-open" title="Ouvrir un projet (Ctrl+O)">Ouvrir</button>
+    <button id="btn-save" title="Enregistrer (Ctrl+S) · Maj+clic = enregistrer sous">Enregistrer</button>
+    <button id="btn-export" data-ctl="export" title="Exporter le morceau en WAV">Exporter WAV</button>
+    <button id="btn-undo" class="ico" title="Annuler (Ctrl+Z)">↶</button>
+    <button id="btn-redo" class="ico" title="Rétablir (Ctrl+Y)">↷</button>
+  </div>
+  <div id="coach" data-zone="coach"><span class="coach-ico">●</span><span id="coach-text">Bienvenue ! Ouvre « Apprendre » pour commencer par le premier cours.</span></div>
+  <button id="btn-coach" class="tbtn on" title="Le coach te prévient quand quelque chose ne va pas (saturation, basses qui se marchent dessus…)">Coach</button>
+  <button id="btn-audio" class="tbtn" title="Choisir la sortie audio">Sortie audio</button>
+  <button id="btn-keys" class="tbtn" title="Raccourcis clavier">Clavier</button>
+  <button id="btn-learn" class="tbtn accent" data-zone="learn-button">Apprendre</button>
+</header>
+
+<nav id="bar">
+  <div id="transport" data-zone="transport">
+    <button id="t-play" data-ctl="play" title="Lecture / stop (Espace)">▶</button>
+    <button id="t-stop" data-ctl="stop" title="Stop et retour au début">■</button>
+    <div class="mode" data-ctl="mode" title="MOTIF : joue le motif sélectionné en boucle · MORCEAU : joue la playlist"><button data-mode="pat" class="on">MOTIF</button><button data-mode="song">MORCEAU</button></div>
+    <div class="lcd" id="t-time" title="Mesure . temps . pas">1.1.1</div>
+  </div>
+  <div class="field" data-ctl="bpm" data-zone="bpm" title="Tempo en battements par minute. Glisser ou taper une valeur."><label>Tempo</label><input id="bpm" type="number" min="40" max="300" step="1"><span>BPM</span></div>
+  <div class="field" data-ctl="swing" title="Swing : retarde un pas sur deux (groove hip-hop, house)"><label>Swing</label><input id="swing" type="range" min="0" max="100"><span id="swing-v">0 %</span></div>
+  <button id="t-metro" data-ctl="metronome" class="tog" title="Métronome">Métronome</button>
+  <div id="pat-sel" data-zone="patterns" title="Motif (pattern) sélectionné : c'est lui que tu édites dans le séquenceur et le piano roll">
+    <button id="pat-prev" class="ico">◀</button><select id="pat" data-ctl="pattern"></select><button id="pat-next" class="ico">▶</button>
+    <button id="pat-add" class="ico" data-ctl="pattern-add" title="Nouveau motif">＋</button>
+    <button id="pat-clone" class="ico" title="Dupliquer le motif">⧉</button>
+    <button id="pat-rename" class="ico" title="Renommer le motif">✎</button>
+    <select id="pat-len" data-ctl="pattern-len" title="Longueur du motif"><option value="16">1 mesure</option><option value="32">2 mesures</option><option value="64">4 mesures</option><option value="128">8 mesures</option></select>
+  </div>
+  <div id="tabs" data-zone="tabs">
+    <button data-view="rack" data-ctl="tab-rack">Séquenceur <kbd>F6</kbd></button>
+    <button data-view="piano" data-ctl="tab-piano">Piano roll <kbd>F7</kbd></button>
+    <button data-view="playlist" data-ctl="tab-playlist">Playlist <kbd>F5</kbd></button>
+    <button data-view="mixer" data-ctl="tab-mixer">Mixeur <kbd>F9</kbd></button>
+  </div>
+  <div id="master-vu" data-ctl="master-vu" title="Niveau du master (sortie). Le haut rouge = saturation."></div>
+</nav>
+
+<main id="work">
+  <aside id="browser" data-zone="browser"></aside>
+  <section id="views">
+    <div class="view" id="v-rack" data-zone="rack"></div>
+    <div class="view" id="v-piano" data-zone="piano" hidden></div>
+    <div class="view" id="v-playlist" data-zone="playlist" hidden></div>
+    <div class="view" id="v-mixer" data-zone="mixer" hidden></div>
+  </section>
+  <aside id="inspector" data-zone="inspector"></aside>
+</main>
+
+<aside id="learn" hidden>
+  <div class="learn-head"><button id="learn-back" class="lbtn" hidden>← Cours</button><b id="learn-title">Apprendre</b><button id="learn-close" class="lbtn" title="Fermer">✕</button></div>
+  <div id="learn-body"></div>
+</aside>
+
+<div id="toast"></div>
+<div id="modal" hidden><div class="modal-box"><div id="modal-body"></div></div></div>
+<div id="drop-hint" hidden>Dépose tes fichiers audio : un sampler sera créé pour chacun</div>
+
+<script src="js/bridge.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
